@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бенідорм → Київ · Тревел-план</title>
+<style>
+  :root{
+    --bg:#f5f7fb; --card:#ffffff; --ink:#16202e; --muted:#5b6b7e;
+    --line:#e3e8f0; --blue:#1f5fd6; --blue-d:#16459c; --green:#1a8a52;
+    --amber:#b7791f; --amber-bg:#fff6e6; --red:#c23b2e; --red-bg:#fdeceb;
+    --green-bg:#e8f6ee; --blue-bg:#eaf1fd;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 16px 64px}
+  header{background:linear-gradient(135deg,#1f5fd6,#16459c);color:#fff;
+    padding:30px 16px 26px;text-align:center}
+  header .inner{max-width:680px;margin:0 auto}
+  .route{font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+  h1{margin:6px 0 4px;font-size:26px;line-height:1.2}
+  .sub{opacity:.92;font-size:15px}
+  .pax{display:inline-block;margin-top:12px;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;font-size:14px}
+  h2{font-size:19px;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:16px 16px;margin:12px 0;box-shadow:0 1px 2px rgba(20,40,80,.04)}
+  .alert{border-radius:14px;padding:14px 16px;margin:14px 0;font-size:14.5px}
+  .alert.amber{background:var(--amber-bg);border:1px solid #f0d9a8;color:#7a5512}
+  .alert.blue{background:var(--blue-bg);border:1px solid #cfdffb;color:#1a3f8f}
+  .alert b{color:inherit}
+  .tl{position:relative;margin:8px 0 0;padding-left:30px}
+  .tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .step{position:relative;margin:0 0 14px}
+  .step .dot{position:absolute;left:-30px;top:2px;width:20px;height:20px;border-radius:50%;
+    background:var(--blue);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .step.flight .dot{background:var(--green)}
+  .step.train .dot{background:#7b3fb5}
+  .time{font-weight:700;font-size:15px}
+  .what{font-weight:600}
+  .detail{color:var(--muted);font-size:14px;margin-top:2px}
+  .pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .pill.green{background:var(--green-bg);color:var(--green)}
+  .pill.amber{background:var(--amber-bg);color:var(--amber)}
+  .btn{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    text-decoration:none;background:var(--blue);color:#fff;border-radius:11px;
+    padding:13px 15px;margin:9px 0;font-weight:600;font-size:15px}
+  .btn small{display:block;font-weight:400;opacity:.85;font-size:12.5px;margin-top:2px}
+  .btn .go{font-size:18px}
+  .btn.alt{background:#2b3a4d}
+  .order{counter-reset:step}
+  .order .bk{position:relative;padding-left:40px;margin:14px 0}
+  .order .bk .n{position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;
+    background:var(--blue);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .bk h3{margin:2px 0 2px;font-size:16px}
+  .bk p{margin:0 0 6px;color:var(--muted);font-size:14px}
+  .avail td{padding:8px 6px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}
+  table.avail{width:100%;border-collapse:collapse}
+  .s-green{color:var(--green);font-weight:700}
+  .s-amber{color:var(--amber);font-weight:700}
+  ul.check{list-style:none;padding:0;margin:6px 0}
+  ul.check li{padding:7px 0 7px 28px;position:relative;border-bottom:1px solid var(--line);font-size:14.5px}
+  ul.check li::before{content:"☐";position:absolute;left:2px;top:6px;color:var(--blue);font-size:16px}
+  ul.check li:last-child{border-bottom:none}
+  .muted{color:var(--muted)}
+  .foot{margin-top:30px;text-align:center;color:var(--muted);font-size:12.5px;line-height:1.6}
+  .grid2{display:flex;gap:10px;flex-wrap:wrap}
+  .grid2 .card{flex:1;min-width:180px;margin:0}
+  .big{font-size:15px}
+</style>
+</head>
+<body>
+<header>
+  <div class="inner">
+    <div class="route">Бенідорм · Іспанія → Київ · Україна</div>
+    <h1>Тревел-план</h1>
+    <div class="sub">Старт: понеділок, 15 червня 2026</div>
+    <div class="pax">2 дорослих + 2 дітей (2 і 3 роки)</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="alert amber">
+    ✈️ <b>Прямих рейсів у Київ немає</b> — повітряний простір України закритий.
+    Маршрут: <b>літак до Варшави</b> + <b>нічний потяг до Києва</b>. Лише 2 пересадки, діти сплять у дорозі.
+  </div>
+
+  <div class="alert blue">
+    ⏱️ <b>Великий запас часу.</b> Між прильотом у Варшаву (14:10) і потягом (20:14) — <b>~6 годин</b>.
+    Навіть якщо Wizz затримається на 2–3 год, ви спокійно встигаєте. Жодних тісних стиків.
+  </div>
+
+  <h2>📍 План дня — понеділок 15.06</h2>
+  <div class="card">
+    <div class="tl">
+
+      <div class="step">
+        <div class="dot">1</div>
+        <div class="time">~07:00</div>
+        <div class="what">Автобус Бенідорм → аеропорт Аліканте (ALC)</div>
+        <div class="detail">ALSA, ~45 хв, €9/дорослий. Зупинка: Benidorm, Avd. Europa. Багаж до 20 кг безкоштовно.</div>
+      </div>
+
+      <div class="step">
+        <div class="dot">2</div>
+        <div class="time">~07:50</div>
+        <div class="what">В аеропорту ALC</div>
+        <div class="detail">За ~2,5 год до вильоту. Рейс у межах Шенгену — без паспортного контролю, лише безпека.</div>
+      </div>
+
+      <div class="step flight">
+        <div class="dot">✈</div>
+        <div class="time">10:25 → 14:10 <span class="pill green">3 год 45 хв</span></div>
+        <div class="what">Wizz Air W6 1488: Аліканте → Варшава-Chopin</div>
+        <div class="detail">Сідає в аеропорт <b>Chopin (WAW)</b> — це в межах міста (НЕ Модлін за містом).</div>
+      </div>
+
+      <div class="step">
+        <div class="dot">3</div>
+        <div class="time">~14:10–15:00</div>
+        <div class="what">Аеропорт Chopin → вокзал Warszawa Centralna</div>
+        <div class="detail">Аеропортовий потяг SKM/KM, 22 хв, ~10 PLN. Або таксі ~10–15 хв.</div>
+      </div>
+
+      <div class="step">
+        <div class="dot">4</div>
+        <div class="time">15:00–20:14</div>
+        <div class="what">~5 годин у Варшаві</div>
+        <div class="detail">Камера схову на вокзалі, обід, діти побігають. Без поспіху й стресу.</div>
+      </div>
+
+      <div class="step train">
+        <div class="dot">🚆</div>
+        <div class="time">20:14 <span class="pill amber">нічний</span></div>
+        <div class="what">Потяг Варшава → Хелм → Київ</div>
+        <div class="detail">Спальні місця. Пересадка в Хелмі з гарантованою стиковкою на потяг УЗ до Києва.
+          Прибуття в Київ наступного дня (точний час — на квитку при бронюванні).</div>
+      </div>
+
+    </div>
+  </div>
+
+  <h2>🎟️ Що бронювати — у такому порядку</h2>
+  <div class="alert amber big">
+    Спершу <b>потяг</b> (місця тануть швидко!), потім <b>літак</b> (місць більше, стабільніше).
+  </div>
+
+  <div class="order card">
+    <div class="bk">
+      <div class="n">1</div>
+      <h3>🚆 Потяг Варшава → Київ, відпр. 20:14</h3>
+      <p>Сайт Укрзалізниці. Шукати: <b>Warszawa → Kyiv</b> на 15.06. Звірити станцію відправлення на квитку (Centralna або Wschodnia — з Chopin обидві за 22–30 хв).</p>
+      <a class="btn" href="https://booking.uz.gov.ua/en/" target="_blank" rel="noopener">
+        <span>booking.uz.gov.ua<small>Офіційний сайт УЗ · оплата карткою</small></span><span class="go">→</span>
+      </a>
+    </div>
+
+    <div class="bk">
+      <div class="n">2</div>
+      <h3>✈️ Wizz Air W6 1488, виліт 10:25</h3>
+      <p>ALC → Warsaw Chopin. Дітям 2 і 3 роки — додати окремі місця в бронь. Онлайн-реєстрація обов'язкова (інакше штраф на стійці).</p>
+      <a class="btn" href="https://wizzair.com" target="_blank" rel="noopener">
+        <span>wizzair.com<small>Звірити дату 15.06 та наявність місць</small></span><span class="go">→</span>
+      </a>
+    </div>
+
+    <div class="bk">
+      <div class="n">3</div>
+      <h3>🚌 Автобус Бенідорм → аеропорт ALC</h3>
+      <p>ALSA, ~07:00. Можна купити онлайн заздалегідь або на станції.</p>
+      <a class="btn" href="https://www.alsa.com/en/coach/benidorm-alicante-elche-airport" target="_blank" rel="noopener">
+        <span>alsa.com<small>Розклад і квитки Benidorm → Alicante Airport</small></span><span class="go">→</span>
+      </a>
+    </div>
+  </div>
+
+  <h2>✅ Наявність квитків — статус</h2>
+  <div class="card">
+    <table class="avail">
+      <tr>
+        <td><b>🚆 Потяг 20:14</b><br><span class="muted">Варшава→Київ через Хелм</span></td>
+        <td><span class="s-green">Місця були</span><br><span class="muted">Підтверджено вручну на 14.06. Кількість тане — бронювати першим.</span></td>
+      </tr>
+      <tr>
+        <td><b>✈️ Wizz W6 1488</b><br><span class="muted">ALC→Warsaw 10:25</span></td>
+        <td><span class="s-green">Рейс щоденний</span><br><span class="muted">Звірити точну дату й місця на wizzair.com при купівлі.</span></td>
+      </tr>
+      <tr>
+        <td><b>🚌 ALSA автобус</b><br><span class="muted">Benidorm→ALC</span></td>
+        <td><span class="s-green">30+ рейсів/день</span><br><span class="muted">Місця практично завжди є.</span></td>
+      </tr>
+    </table>
+    <p class="muted" style="font-size:13px;margin:10px 0 0">
+      Точну кількість вільних місць у реальному часі показують лише сайти бронювання за лінками вище — перевіряйте безпосередньо перед оплатою.
+    </p>
+  </div>
+
+  <h2>🧳 Чекліст перед виїздом</h2>
+  <div class="card">
+    <ul class="check">
+      <li>Закордонні/біометричні паспорти на всіх (для наземного в'їзду в Україну)</li>
+      <li>Проїзні документи на дітей</li>
+      <li>Онлайн-реєстрація на Wizz зроблена, посадкові збережені офлайн</li>
+      <li>Окремі місця для дітей у авіаброні</li>
+      <li>Квиток на потяг збережений (PDF/у застосунку УЗ)</li>
+      <li>Вода, перекус, ліки, вологі серветки — у ручній поклажі</li>
+      <li>Готівка: трохи EUR (Іспанія) + PLN (Польща, на вокзал/таксі/їжу)</li>
+      <li>Павербанк заряджений</li>
+    </ul>
+  </div>
+
+  <h2>🔁 Запасні варіанти</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin:0 0 6px;font-size:15px">Якщо немає місць на потяг 20:14</h3>
+      <p class="muted" style="margin:0;font-size:14px">Потяг <b>23:10</b> (той самий маршрут через Хелм) або потяги від <b>Перемишля</b> — їх більше: №705, №89, №715.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 6px;font-size:15px">Якщо не зайшов рейс Wizz</h3>
+      <p class="muted" style="margin:0;font-size:14px">Ryanair FR1002 (виліт ~09:05) — але сідає в <b>Модлін</b>, +1 год трансфер до міста. Запас часу все одно дозволяє встигнути на потяг.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin:0 0 6px;font-size:15px">Крайній випадок — автобус</h3>
+    <p class="muted" style="margin:0;font-size:14px">FlixBus Варшава → Київ, ~14–15 год, кілька рейсів/день, місця майже завжди є. Менш комфортно з малюками, тож лише як резерв.
+      <a href="https://global.flixbus.com/bus-routes/bus-warsaw-kyiv" target="_blank" rel="noopener">flixbus.com →</a></p>
+  </div>
+
+  <div class="foot">
+    Складено 14.06.2026 на основі публічних розкладів і даних бронювання.<br>
+    Ціни та час — орієнтовні; фінал підтверджується в момент бронювання за офіційними лінками вище.<br>
+    Щасливої та безпечної дороги 💙💛
+  </div>
+
+</div>
+</body>
+</html>
